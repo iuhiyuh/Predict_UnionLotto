@@ -1,4 +1,4 @@
-# predict_UnionLotto
+# Predict_UnionLotto
 **my env:** <br />
 python 3.6 <br />
 pytorch 1.0.1 <br />
