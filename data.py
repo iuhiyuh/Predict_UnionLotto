@@ -14,10 +14,11 @@ def make_data(config):
         for i in range(csv.shape[0]):
             row = csv.loc[i, :]
             dataset.append(row[2].replace('|', ','))
-        with open('data.txt', 'w') as file:
-            for data in dataset:
+        with open('./data/data.txt', 'w') as file:
+            for i, data in enumerate(dataset):
                 file.write(str(data))
-                file.write('\n')
+                if i != len(dataset):
+                    file.write('\n')
 
 
 def to_categorical(y, num_classes):

@@ -5,7 +5,7 @@ import torch
 class Config:
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-    data_path = r'E:\workspace\work\two_color_ball\data\data.csv'
+    data_path = '/mnt/data/hyh/workspace/two_color_ball/data/data.csv'
     model_prefix = 'checkpoints/ball'
     model_path = 'checkpoints/ball.pth'
     pickle_path = 'data/data.npz'
