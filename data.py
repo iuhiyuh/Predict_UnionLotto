@@ -28,7 +28,6 @@ def to_categorical(y, num_classes):
 def tranform_data():
     red_1, red_2, red_3, red_4, red_5, red_6, blue = [], [], [], [], [], [], []
     lists = [red_1, red_2, red_3, red_4, red_5, red_6, blue]
-
     if not os.path.exists("./data/data.txt"):
         make_data(conf.Config)
     with open('./data/data.txt', 'r') as file:
@@ -37,7 +36,6 @@ def tranform_data():
     for data in DATA:
         for i, lista in enumerate(lists):
             lista.append(data.split(',')[i])
-
     new_lists = []
     for lista in lists:
         lista = list(map(int, lista))
@@ -50,14 +48,12 @@ def tranform_data():
                 tmp_list.append(lista[index + i])
             final_list.append(tmp_list)
         new_lists.append(final_list)
-
     x_datas, y_datas = [], []
     for lista in new_lists:
         x_data = np.array(lista)[:, 0:10].reshape([-1, 10, 1])
         y_data = np.array(lista)[:, 10:].reshape([-1, 1]).ravel()
         x_datas.append(x_data)
         y_datas.append(y_data - 1)
-
     return x_datas, y_datas
 
 
@@ -76,20 +72,16 @@ def get_dataloader(config):
     val_dataloaders = []
     for i in range(7):
         dataset = get_data(i)
-
         validation_split = config.validation_split
         dataset_size = len(dataset)
         indices = list(range(dataset_size))
         split = int(np.floor(validation_split * dataset_size))
-
         if config.shufflw_dataset:
             np.random.seed(config.random_seed)
             np.random.shuffle(indices)
         train_indices, val_indices = indices[split:], indices[: split]
-
         train_sampler = Data.SubsetRandomSampler(train_indices)
         valid_sampler = Data.SubsetRandomSampler(val_indices)
-
         train_loader = Data.DataLoader(dataset=dataset
                                        , batch_size=config.batch_size
                                        , num_workers=config.num_workers
