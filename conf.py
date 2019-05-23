@@ -9,11 +9,9 @@ class Config:
     model_prefix = 'checkpoints/ball'
     model_path = 'checkpoints/ball.pth'
     pickle_path = 'data/data.npz'
-
     validation_split = .2
     shufflw_dataset = True
     random_seed = 1
-
     max_epoch = 400
     num_layers = 2
     hidden_dim = 256
@@ -21,7 +19,6 @@ class Config:
     class_num = 33
     batch_size = 128
     num_workers = 2
-
     LR = 1e-3
     weight_decay = 1e-4
     weight = torch.Tensor([0.00248, 0.0031, 0.00373, 0.00448
