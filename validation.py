@@ -1,19 +1,16 @@
 # -*- coding: utf-8 -*-
 from conf import *
 from data import get_dataloader
-import torch.optim as optim
 from torch import nn
 import numpy as np
 from show import show_loss_acc
 
 
-def val(datasets, model, idx, epoch, loss_logs, acc_logs, **kwargs):
+def val(criterion, datasets, model, idx, epoch, loss_logs, acc_logs, **kwargs):
     conf = Config()
     model.eval()
     for k, v in kwargs.items():
         setattr(conf, k, v)
-    opt = optim.Adam(model.parameters())
-    criterion = nn.CrossEntropyLoss(weight=conf.weight).to(conf.device)
     loss_log = []
     acc_log = []
     for step, (batch_x, batch_y) in enumerate(datasets[idx]):
