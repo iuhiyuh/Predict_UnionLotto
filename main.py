@@ -16,8 +16,10 @@ if __name__ == "__main__":
         datasets_train, datasets_val = get_dataloader(conf)
         model = Model(conf).to(conf.device)
         model = nn.DataParallel(model)
+        opt = optim.Adam(model.parameters(), lr=conf.LR, weight_decay=conf.weight_decay)
+        criterion = nn.CrossEntropyLoss(weight=conf.weight).to(conf.device)
         loss_logs1, loss_logs2 = [], []
         acc_logs1, acc_logs2 = [], []
         for epoch in range(conf.max_epoch):
-            train(datasets_train, model, i, epoch, loss_logs1, acc_logs1)
-            val(datasets_val, model, i, epoch, loss_logs2, acc_logs2)
+            train(opt, criterion, datasets_train, model, i, epoch, loss_logs1, acc_logs1)
+            val(criterion, datasets_val, model, i, epoch, loss_logs2, acc_logs2)
