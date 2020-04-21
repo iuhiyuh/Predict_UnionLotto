@@ -10,6 +10,3 @@ numpy 1.16.2 <br />
 balls contain red and blue. <br />
 red is from 1 to 33 <br />
 blue is from 1 to 16
-
-**others:** <br/>
-*For more information, please contact me.*
